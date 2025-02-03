@@ -1,13 +1,23 @@
 import React from 'react';
-// import 해줘야 함 (같은 jsx면 확장자 생략 가능)
-import Hello from './components/Hello'
-import Bye from "./components/Bye.jsx";
-import ExpenseItem from "./components/expenseTracker/ExpenseItem.jsx";
 import ExpenseList from "./components/expenseTracker/ExpenseList.jsx";
 
-// 컴포넌트
-//    title = { } :
-// props : 부모가 전달한 데이터가 들어옴
+/*
+  [ 자식 React Component에 Props (properties의 약자)를 이용하여 정보를 전달해주는 법 ]
+   1) 부모 요소에서 return ( <자식컴포넌트명 /> ) 이 부분에 <자식컴포넌트명 Props명=속성값> 형식으로 정보를 전달해준다.
+     - 예시) <ExpenseList expenses={expenses} />
+   2) 자식요소에서 const 자식컴포넌트명 = () => { return () } 부분에서 parameter로 props 를 받아서 사용한다.
+     - 예시)  이 클래스의 자식 컴포넌트에서 첫줄 보면 props을 받아서 deconstructuring 하였음
+      const ExpenseList = ({ expenses }) => {
+     return (
+        <div className='expenses'>
+            <ExpenseItem expense={expenses[0]} />
+            <ExpenseItem expense={expenses[1]} />
+            <ExpenseItem expense={expenses[2]} />
+        </div>
+     );
+};
+
+ */
 const App = () => {
 
     // 서버에서 지출 항목 json 이 응답됨
@@ -30,6 +40,7 @@ const App = () => {
     ];
 
     return (
+        // 부모 요소에서 return ( <자식컴포넌트명 /> ) 이 부분에 <자식컴포넌트명 Props명=속성값> 형식으로 정보를 전달해준다.
        <ExpenseList expenses={expenses} />
     );
 }

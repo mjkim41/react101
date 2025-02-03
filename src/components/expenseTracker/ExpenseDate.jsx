@@ -3,7 +3,8 @@ import './ExpenseDate.css';
 
 const ExpenseDate = ({ expenseDate }) => {
 
-    const month = expenseDate.toLocaleString('en-US', {month: 'long'});
+    // 날짜 형식 변경 : toLocaleString('언어-지역', 옵션으로 {year/month/day: numeric 등등})
+    const month = expenseDate.toLocaleString('ko-KR', {month: 'long'});
 
     return (
         <div className='expense-date'>
