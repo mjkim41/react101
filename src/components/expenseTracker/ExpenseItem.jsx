@@ -4,18 +4,32 @@ import React from 'react';
 Webpack은 CSS 파일을 JavaScript 모듈처럼 취급하고, 이를 통해 CSS를 JavaScript 코드 내에서 가져올 수 있도록 도와줍니다.
 이 과정은 개발자가 직접 설정하지 않더라도, Create React App 등의 도구를 사용하면 자동으로 설정됩니다.
  */
-import './ExpenseItem.css';
 
-const ExpenseItem = () => {
+// props 뭔 말이여????
+/*
+React에서 props는 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달하는 방법입니다. props는 "properties"의 약자입니다.
+props 전달하기: 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달할 때 props를 사용합니다. 예를 들어, ExpenseItem 컴포넌트를 사용하면서 title과 같은 값을 전달할 수 있습니다:
+props 받기: 자식 컴포넌트에서는 props 객체를 받아서 사용할 수 있습니다. ExpenseItem 컴포넌트의 경우, props 객체를 매개변수로 받고, 이 객체의 속성(title)을 사용합니다.
+ */
+
+import './ExpenseItem.css';
+import ExpenseDate from "./ExpenseDate.jsx";
+
+const ExpenseItem = ({ title, price, date }) => {
+    // console.log('props: ', props);
+
+
     return (
         <div className='expense-item'>
-            <div>2025-02-03</div>
+            {/* 날짜를 component 화 함*/}
+            <ExpenseDate expenseDate={date}/>
             <div className='expense-item__description'>
-                <h2>점심밥</h2>
-                <div className='expense-item__price'>10000원</div>
+                <h2>{title}</h2>
+                <div className='expense-item__price'>{price}원</div>
             </div>
         </div>
     );
-}
+};
 
-export default ExpenseItem
+export default ExpenseItem;
+

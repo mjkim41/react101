@@ -5,11 +5,20 @@ import Bye from "./components/Bye.jsx";
 import ExpenseItem from "./components/expenseTracker/ExpenseItem.jsx";
 
 // 컴포넌트
+//    title = { } :
+// props : 부모가 전달한 데이터가 들어옴
 const App = () => {
 
     return (
       <>
-          <ExpenseItem />
+          <ExpenseItem
+              title={'닭강정'}
+              price={8000}
+              date={new Date(2025, 1, 3)}/>
+          <ExpenseItem
+              title={'아이스크림'}
+              price={5000}
+              date={new Date(2025, 2, 3)}/>
       </>
     );
 };
