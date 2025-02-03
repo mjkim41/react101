@@ -15,9 +15,12 @@ props 받기: 자식 컴포넌트에서는 props 객체를 받아서 사용할 �
 import './ExpenseItem.css';
 import ExpenseDate from "./ExpenseDate.jsx";
 
-const ExpenseItem = ({ title, price, date }) => {
+const ExpenseItem = ({ expense }) => {
     // console.log('props: ', props);
+    const { title, price, date } = expense;
 
+    // 원화 표기법으로 변환
+    const formatPrice = new Intl.NumberFormat('ko-KR').format(price);
 
     return (
         <div className='expense-item'>
@@ -25,7 +28,8 @@ const ExpenseItem = ({ title, price, date }) => {
             <ExpenseDate expenseDate={date}/>
             <div className='expense-item__description'>
                 <h2>{title}</h2>
-                <div className='expense-item__price'>{price}원</div>
+                {/* 통화 표시를 compeont화 함 */}
+                <div className='expense-item__price'>{formatPrice}원</div>
             </div>
         </div>
     );

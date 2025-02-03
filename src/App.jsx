@@ -3,29 +3,41 @@ import React from 'react';
 import Hello from './components/Hello'
 import Bye from "./components/Bye.jsx";
 import ExpenseItem from "./components/expenseTracker/ExpenseItem.jsx";
+import ExpenseList from "./components/expenseTracker/ExpenseList.jsx";
 
 // 컴포넌트
 //    title = { } :
 // props : 부모가 전달한 데이터가 들어옴
 const App = () => {
 
-    return (
-      <>
-          <ExpenseItem
-              title={'닭강정'}
-              price={8000}
-              date={new Date(2025, 1, 3)}/>
-          <ExpenseItem
-              title={'아이스크림'}
-              price={5000}
-              date={new Date(2025, 2, 3)}/>
-      </>
-    );
-};
+    // 서버에서 지출 항목 json 이 응답됨
+    const expenses = [
+        {
+            title: '치킨',
+            price: 30000,
+            date: new Date(2025, 2 - 1, 3),
+        },
+        {
+            title: '로제떡볶이',
+            price: 20000,
+            date: new Date(2024, 9 - 1, 1),
+        },
+        {
+            title: '크로스핏',
+            price: 300000,
+            date: new Date(2025, 1 - 1, 15),
+        }
+    ];
 
-  /*
-    jsx : 리액트에서 사용하는 특수한 js 문법, 태그를 그대로 쓰면 알아서 변환
-   */
+    return (
+       <ExpenseList expenses={expenses} />
+    );
+}
+
+
+/*
+  jsx : 리액트에서 사용하는 특수한 js 문법, 태그를 그대로 쓰면 알아서 변환
+ */
 
   // 원래 문법 :
   // const $h1 = React.createElement('h1', null, 'React 101');
