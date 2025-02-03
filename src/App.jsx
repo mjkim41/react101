@@ -2,9 +2,17 @@ import React from 'react';
 // import 해줘야 함 (같은 jsx면 확장자 생략 가능)
 import Hello from './components/Hello'
 import Bye from "./components/Bye.jsx";
+import ExpenseItem from "./components/expenseTracker/ExpenseItem.jsx";
 
 // 컴포넌트
-function App() {
+const App = () => {
+
+    return (
+      <>
+          <ExpenseItem />
+      </>
+    );
+};
 
   /*
     jsx : 리액트에서 사용하는 특수한 js 문법, 태그를 그대로 쓰면 알아서 변환
@@ -67,15 +75,15 @@ function App() {
   //       <input type='text' id='username' />
   //     </header>
   // );
+  //
+  //   return (
+  //       <>
+  //           <Hello />
+  //           <Bye />
+  //       </>
+  //   )
 
-    return (
-        <>
-            <Hello />
-            <Bye />
-        </>
-    )
 
-}
 
 export default App
 
