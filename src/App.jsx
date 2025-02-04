@@ -24,6 +24,17 @@ import Counter from "./components/Counter.jsx";
  */
 const App = () => {
 
+    // drilling
+    // 상향식 데이터 전달을 위해 하위컴포넌트에 함수 하나를 내려저ㅜ야 함. drilling
+    // react 관례상 앞에 on을 붙이면 함수임
+    // 이름 왜 userInput으로 안하고 newUserData로 해도 되는 거지???
+    const onAddExpense = ( newUserData ) => {
+        console.log('상향식 데이터 전달용 함수', newUserData);
+        expenses.push(newUserData);
+
+        console.log(expenses);
+    }
+
     // 서버에서 지출 항목 json 이 응답됨
     const expenses = [
         {
@@ -48,8 +59,8 @@ const App = () => {
 
             // 안의 태그 내용이 유동적인 경우 : 부모가 <></> 사이에 내용 적어서 children으로 전달해주면, 자식 태그에서 props.children으로 사용
             <>
-                <Counter />
-                <NewExpense />
+                {/* drilling */}
+                <NewExpense onSave={onAddExpense}/>
                 <ExpenseList expenses={expenses} />
             </>
     );

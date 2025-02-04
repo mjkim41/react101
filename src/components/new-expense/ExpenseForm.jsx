@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ onAdd } ) => {
 
     // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
     const getTodayDate = () => {
@@ -42,6 +42,9 @@ const ExpenseForm = () => {
         // };
 
         console.log('payload : ', userInput);
+
+        // drilling
+        onAdd(userInput);
 
         // 입력창 비우기 - 상태값과 input을 연결하려면 양방향으로 연결해야 함
         // input 태그에 입력하면 상태값 userInput만 변경됨 - 단방향
