@@ -3,6 +3,7 @@ import ExpenseList from "./components/expenseTracker/ExpenseList.jsx";
 import ExpenseForm from "./components/new-expense/ExpenseForm.jsx";
 import NewExpense from "./components/new-expense/NewExpense.jsx";
 import CheckBoxStyle from "./components/practice/CheckBoxStyle.jsx";
+import Counter from "./components/Counter.jsx";
 
 /*
   [ 자식 React Component에 Props (properties의 약자)를 이용하여 정보를 전달해주는 법 ]
@@ -47,6 +48,7 @@ const App = () => {
 
             // 안의 태그 내용이 유동적인 경우 : 부모가 <></> 사이에 내용 적어서 children으로 전달해주면, 자식 태그에서 props.children으로 사용
             <>
+                <Counter />
                 <NewExpense />
                 <ExpenseList expenses={expenses} />
             </>

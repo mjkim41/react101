@@ -10,7 +10,9 @@ const Counter = () => {
     const increaseHandler = () => {
         // 상태 값을 업데이트할 때는, 반드시  setter를 통해 업데이트해야 함
         // count++; 이렇게 하면 안 됨
-        setCount(count + 1);
+        // 그냥 setCount(count+1); 이렇게 해버리면, 이전 상태랑 비교해서 봤을 때 얘 입장에서는 1 -> 1로 바꿔달라는 말이니까 안 바뀜
+        setCount((prevCount) => prevCount + 1);
+        setCount((prevCount) => prevCount + 1);
         // 상태 업데이트는 리렌더링 이후에 일어남
         console.log('2. click count: ', count);
     };

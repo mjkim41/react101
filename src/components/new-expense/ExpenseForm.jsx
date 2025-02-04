@@ -54,10 +54,13 @@ const ExpenseForm = () => {
     // 객체로 상태관리하깅 위해서, 쉽게 하기 위해 함수 빼줌
     // ! 상태값이 객체나 배열일 경우에는 항상 새로운 객체, 배열을 통해 세팅하여야 함
     const handleTitleInput = (e) => {
-        setUserInput({
-            // 객체 복사 후 기존에 있는 key 값을 다시 설정하면, 그 key의 값이 수정됨 !
-            ... userInput,
-            title: e.target.value,
+        // 이전 상태를 가져와서
+        setUserInput((prevState) => {
+            return {
+                // 객체 복사 후 기존에 있는 key 값을 다시 설정하면, 그 key의 값이 수정됨 !
+                ...prevState,
+                title: e.target.value
+            }
         })
     }
     const handlePriceInput = (e) => {
