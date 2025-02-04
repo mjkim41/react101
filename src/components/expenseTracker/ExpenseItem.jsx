@@ -15,9 +15,18 @@ const ExpenseItem = ({ expense }) => {
     // 원화 표기법으로 변환
     const formatPrice = new Intl.NumberFormat('ko-KR', {style: 'currency', currency:'krw'}).format(price);
 
+    // 리액트에서는 return 형식으로 보내기 때문에, 얘가 먼저 발생해서 불가
+    // const $btn1 = document.getElementById('btn1');
+    // console.log($btn1);
+
+    // 이벤트 핸들러 정의
+    function handleClick() {
+        console.log('클릭!!');
+    }
+
     return (
-        // 카드로 감싸줌
-        <Card className='expense-item'>
+        // ! 이벤트는 html 태그에만 걸 수 있음. Card는 태그가 아닌 Component임. 따라서 event 미발생. props로 전달해주는 것임
+        <Card className='expense-item' onClick={e => console.log('card click!!')}>
             {/* 날짜를 component 화 함*/}
             <ExpenseDate expenseDate={date}/>
             <div className='expense-item__description'>
@@ -25,6 +34,10 @@ const ExpenseItem = ({ expense }) => {
                 {/* 통화 표시를 compeont화 함 */}
                 <div className='expense-item__price'>{formatPrice}</div>
             </div>
+
+             {/*    이벤트 바인딩 실습  : 바닐라에서는 onclick=handleClick(), react에서는 onClick=handleClick */}
+            <button id='btn1' onClick={handleClick}>button1</button>
+            <button id='btn2' onDoubleClick={e => {alert('메롱')}} onMouseOver={e => {alert('이벤트 발생')}}>button2</button>
         </Card>
     );
 };
