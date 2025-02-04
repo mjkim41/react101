@@ -6,6 +6,7 @@ Webpack은 CSS 파일을 JavaScript 모듈처럼 취급하고, 이를 통해 CSS
 
 import './ExpenseItem.css';
 import ExpenseDate from "./ExpenseDate.jsx";
+import Card from "../ui/card.jsx";
 
 const ExpenseItem = ({ expense }) => {
     // console.log('props: ', props);
@@ -15,7 +16,8 @@ const ExpenseItem = ({ expense }) => {
     const formatPrice = new Intl.NumberFormat('ko-KR', {style: 'currency', currency:'krw'}).format(price);
 
     return (
-        <div className='expense-item'>
+        // 카드로 감싸줌
+        <Card className='expense-item'>
             {/* 날짜를 component 화 함*/}
             <ExpenseDate expenseDate={date}/>
             <div className='expense-item__description'>
@@ -23,7 +25,7 @@ const ExpenseItem = ({ expense }) => {
                 {/* 통화 표시를 compeont화 함 */}
                 <div className='expense-item__price'>{formatPrice}</div>
             </div>
-        </div>
+        </Card>
     );
 };
 

@@ -41,8 +41,12 @@ const App = () => {
 
     return (
         // 부모 요소에서 return ( <자식컴포넌트명 /> ) 이 부분에 <자식컴포넌트명 Props명=속성값> 형식으로 정보를 전달해준다.
-       <ExpenseList expenses={expenses} />
+        <>
+            {/*안의 태그 내용이 유동적인 경우 : 부모가 <></> 사이에 내용 적어서 children으로 전달해주면, 자식 태그에서 props.children으로 사용*/}
+            <ExpenseList expenses={expenses} />
+        </>
     );
+
 }
 
 
