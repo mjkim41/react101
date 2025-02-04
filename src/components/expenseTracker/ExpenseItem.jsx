@@ -21,8 +21,8 @@ const ExpenseItem = ({ expense }) => {
 
     // 상태값을 처리하는 함수(hook)
     // : useState 훅의 리턴값을 배열이며, 첫번째 요소는 관리할 상태값의 초기값, 두번째 요소는 해당 상태값을 변경할 떄 사용하는 setter 함수
-    let [itemTitle, setItemTitle] = useState(title);
-    console.log('itemTitle:', itemTitle);
+    const [itemTitle, setItemTitle] = useState(title);
+    // console.log('itemTitle:', itemTitle);
 
 
     // 이벤트 핸들러 정의
