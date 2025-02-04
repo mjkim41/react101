@@ -2,10 +2,22 @@ import React from 'react';
 import ExpenseItem from './ExpenseItem';
 // React 프로젝트에서 JSX 파일에 CSS 파일을 가져오는 법 : html 과는 달리 import './App.css'; 이런식으로 해주면 됨
 import './ExpenseList.css';
+import ExpenseFilter from "./ExpenseFilter.jsx";
 const ExpenseList = ({ expenses }) => {
-    console.log(expenses);
+
+    // ExpenseFilter에서 선택한 연도값을 여기서 출력
+    // console.log('필터 연도값을 출력!', filteredYear );
+
+    // drilling 1. 함수 만들어주기(ExpenseFilter에 전달용)
+    // drilling 3. ExpenseFilter에서 onSelectYear(e.target.value)로 값을 전달해주었음
+    const onSelectYear = ( selectedYear ) => {
+        console.log('필터 연도값을 출력', selectedYear);
+    }
+
     return (
         <div className='expenses'>
+            {/* Drilling 2.ExpenseFilter에 driling 용 함수 전달해주기 */}
+            <ExpenseFilter onSelectYear={ onSelectYear }/>
             {/*App에서 배열 안에 객체 감싸서 보내줬었음*/}
             <ExpenseItem expense={expenses[0]} />
             <ExpenseItem expense={expenses[1]} />
