@@ -11,7 +11,7 @@ const Chart = ({ dataPoints }) => {
     function calcTotal() {
         let total = 0;
         for (const dp of dataPoints) {
-            total + dp.value;
+            total += dp.value;
         }
         return total;
     }

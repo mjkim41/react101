@@ -1,19 +1,23 @@
-import React from "react";
+import React from 'react';
 
-import "./ChartBar.css";
+import './ChartBar.css';
 
-// 월을 props.label로 받아와서
-const ChartBar = ({label}) => {
+const ChartBar = ({ label, currentMonthValue, totalValue }) => {
+
+    // 월별 지출액 비율 구하기
+    let barFillHeight = '0%';
+
+    if (totalValue > 0) {
+        const percentage = (currentMonthValue / totalValue) * 100;
+        barFillHeight = percentage + '%';
+    }
 
     return (
-        <div className="chart-bar">
-            <div className="chart-bar__inner">
-                <div
-                    className="chart-bar__fill"
-                ></div>
+        <div className='chart-bar'>
+            <div className='chart-bar__inner'>
+                <div className='chart-bar__fill' style={{ height: barFillHeight }}></div>
             </div>
-            {/* props.label로 받아온 월을 입력해주기 */}
-            <div className="chart-bar__label">{ label }</div>
+            <div className='chart-bar__label'>{ label }</div>
         </div>
     );
 };
