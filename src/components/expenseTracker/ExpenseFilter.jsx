@@ -11,18 +11,20 @@ const ExpenseFilter = ( { onSelectYear } ) => {
         onSelectYear(selectedYear);
     };
 
+    // 연도 만들기
+    const yearArr = [2019, 2020, 2021, 2022, 2023, 2024, 2025];
+    const createYear =
+        yearArr
+            .sort((a,b) => b-a)
+            .map((year) => (<option key={year} value={year}>{year}</option>));
+    console.log(createYear);
+
     return (
         <div className='expenses-filter'>
             <div className='expenses-filter__control'>
                 <label>Filter by year</label>
                 <select onChange={changeYearHandler}>
-                    <option value='2025'>2025</option>
-                    <option value='2024'>2024</option>
-                    <option value='2023'>2023</option>
-                    <option value='2022'>2022</option>
-                    <option value='2021'>2021</option>
-                    <option value='2020'>2020</option>
-                    <option value='2019'>2019</option>
+                    {createYear}
                 </select>
             </div>
         </div>
