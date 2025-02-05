@@ -43,8 +43,11 @@ const ExpenseForm = ({ onAdd } ) => {
 
         console.log('payload : ', userInput);
 
-        // drilling
-        onAdd(userInput);
+        // 부모에 drilling
+        onAdd({
+            ...userInput,
+            date : new Date(userInput.date)
+        });
 
         // 입력창 비우기 - 상태값과 input을 연결하려면 양방향으로 연결해야 함
         // input 태그에 입력하면 상태값 userInput만 변경됨 - 단방향
