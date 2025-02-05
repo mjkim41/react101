@@ -2,7 +2,7 @@ import React from 'react';
 import './ExpenseFilter.css';
 
 // drilling 1. : onSelectYear 가져오기
-const ExpenseFilter = ( {onSelectYear} ) => {
+const ExpenseFilter = ( { onSelectYear } ) => {
 
     // Select에 Change 이벤트가 일어나면 발생하는 이벤트
     const changeYearHandler = e => {
