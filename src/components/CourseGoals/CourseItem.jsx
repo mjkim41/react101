@@ -1,8 +1,8 @@
 import React from 'react';
 import './CourseItem.css';
 
-const CourseItem = () => {
-    return <li className='goal-item'>코스 목표</li>;
+const CourseItem = ({item}) => {
+    return <li className='goal-item'>{ item }</li>;
 };
 
 export default CourseItem;
