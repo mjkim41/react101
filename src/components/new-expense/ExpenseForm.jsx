@@ -1,21 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({ onAdd } ) => {
+const ExpenseForm = ({ onAdd, onCancel }) => {
 
-    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
-    const getTodayDate = () => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줌
-        const day = String(today.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    }
 
-    // 1. 상태값 관리하기
-    //   <input type="text" onChange={e => setTitle(e.target.value)}/>
-
-    // 하나씩
+    // 단일 상태값 관리
     // const [title, setTitle] = useState('');
     // const [price, setPrice] = useState(0);
     // const [date, setDate] = useState(null);
@@ -26,98 +15,107 @@ const ExpenseForm = ({ onAdd } ) => {
         date: '',
     };
 
-    // 여러 개 한 번에
+    // 객체 상태값 관리
     const [userInput, setUserInput] = useState(initialUserInput);
 
 
-    // 3. form에 걸 이벤트 만들기
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
+    const getTodayDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더해줌
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    // form submit 이벤트
     const handleSubmit = e => {
         e.preventDefault();
+        // console.log('submit!!');
 
-        // 단일 값 할 때
         // const payload = {
-        //     title,
-        //     price,
-        //     date
+        //   title,
+        //   price,
+        //   date
         // };
 
-        console.log('payload : ', userInput);
+        console.log('payload: ', userInput);
 
-        // 부모에 drilling
+        // 부모가 보낸 데이터전달용 함수를 호출
         onAdd({
             ...userInput,
-            date : new Date(userInput.date)
+            date: new Date(userInput.date)
         });
 
-        // 입력창 비우기 - 상태값과 input을 연결하려면 양방향으로 연결해야 함
-        // input 태그에 입력하면 상태값 userInput만 변경됨 - 단방향
-        // setUserInput(null); !! <- 이렇게 하면 지워지지도 않고 순서 때문에 payload도 null이 되어 버림 !!!!
+
+        // 입력창 비우기 - 상태값과 input을 연결하려면 양방향으로 연결해야함
+        // input태그에 입력하면 상태값 userInput만 변경됨 - 단방향
+        // userInput을 변경하면 input태그도 변경됨 - 양방향
         setUserInput(initialUserInput);
 
+    };
 
-    }
+    const handleTitleInput = e => {
 
-    // 객체로 상태관리하깅 위해서, 쉽게 하기 위해 함수 빼줌
-    // ! 상태값이 객체나 배열일 경우에는 항상 새로운 객체, 배열을 통해 세팅하여야 함
-    const handleTitleInput = (e) => {
-        // 이전 상태를 가져와서
-        setUserInput((prevState) => {
-            return {
-                // 객체 복사 후 기존에 있는 key 값을 다시 설정하면, 그 key의 값이 수정됨 !
+        // 리액트는 상태값변경은 반드시 setter를 통해서 수행
+        // 상태값이 객체나 배열일 경우에는 항상 새로운 객체, 배열을 세팅하라
+        setUserInput((prevState) =>
+            ({
                 ...prevState,
-                title: e.target.value
-            }
-        })
-    }
+                title: e.target.value,
+            })
+        );
+
+
+    };
     const handlePriceInput = (e) => {
         setUserInput({
-            ... userInput,
-            price: e.target.value
-        })
-    }
+            ...userInput,
+            price: +e.target.value,
+        });
+    };
     const handleDateInput = (e) => {
         setUserInput({
             ...userInput,
-            date: e.target.value
-        })
-    }
+            date: e.target.value,
+        });
+    };
 
     return (
-        // 2. form에 submit 이벤트 걸기
         <form onSubmit={handleSubmit}>
-            <div className="new-expense__controls">
-                <div className="new-expense__control">
+            <div className='new-expense__controls'>
+                <div className='new-expense__control'>
                     <label>Title</label>
-                    {/* 단일 상태 관리 값으로 관리할 떄 : onChange={e => setTitle(e.target.value)} */}
                     <input
-                        type="text"
-                        onChange={ handleTitleInput }
-                        // ???? 이래야 value 값이 바뀐다고??
-                        value={userInput.title} />
+                        type='text'
+                        onInput={handleTitleInput}
+                        value={userInput.title}
+                    />
                 </div>
-                <div className="new-expense__control">
+                <div className='new-expense__control'>
                     <label>Price</label>
                     <input
-                        type="number"
-                        min="100"
-                        step="100"
-                        onChange={ handlePriceInput }
+                        type='number'
+                        min='100'
+                        step='100'
+                        onInput={handlePriceInput}
                         value={userInput.price}
                     />
                 </div>
-                <div className="new-expense__control">
+                <div className='new-expense__control'>
                     <label>Date</label>
                     <input
-                        type="date"
-                        min="2019-01-01"
+                        type='date'
+                        min='2019-01-01'
                         max={getTodayDate()}
-                        onChange={ handleDateInput }
+                        onInput={handleDateInput}
                         value={userInput.date}
                     />
                 </div>
             </div>
-            <div className="new-expense__actions">
-                <button type="submit">Add Expense</button>
+            <div className='new-expense__actions'>
+                <button type='button' className='cancel-btn' onClick={onCancel}>Cancel</button>
+                <button type='submit'>Add Expense</button>
             </div>
         </form>
     );

@@ -9,7 +9,7 @@ const NewExpense = ({ onSave }) => {
     const [toggle, setToggle] = useState(false);
 
     const buttonComponent = <button onClick={() => setToggle(true)}>새로운 지출 추가하기</button>;
-    const formComponent = <ExpenseForm onAdd={onSave} />;
+    const formComponent = <ExpenseForm onAdd={onSave} onCancel={() => setToggle(false)}/>;
 
     return (
         <div className='new-expense'>
