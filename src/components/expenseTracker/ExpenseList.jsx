@@ -21,6 +21,7 @@ const ExpenseList = ({ expenses }) => {
             <ExpenseFilter onChangeFilter={onFilterChange} />
             {expenses
                 .filter(ex => ex.date.getFullYear().toString() === year)
+                // React에서 key prop은 리스트의 각 항목을 고유하게 식별하기 위해 사용됩니다
                 .map((ex) => (<ExpenseItem key={Math.random()} expense={ex} />))}
         </div>
     );
