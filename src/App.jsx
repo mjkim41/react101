@@ -14,13 +14,19 @@ const App = () => {
         setGoals( [ ...goals, newGoal ] );
     }
 
+    // 바구니 함수(CourItem에 지울 li의 id 알려달라고 전달할 함수)
+    const onDeleteGoal = ( goal ) => {
+        console.log(goal);
+    }
+
     return (
         <div>
             <section id={'goal-form'}>
                 <CourseInput onAdd={ onAddGoal }/>
             </section>
             <section id='goals'>
-                <CourseList items={goals}/>
+                {/* onDelete = 자식한테 지울 li 받아오는 것 */}
+                <CourseList items={goals} onDelete={ onDeleteGoal }/>
             </section>
         </div>
     );

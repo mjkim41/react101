@@ -13,7 +13,10 @@ const CourseInput = ({onAdd}) => {
         e.preventDefault();
         console.log(enteredText);
         // 부모에 goal 보내주기
-        onAdd(enteredText);
+        onAdd({
+            id: Math.random().toString(),
+            text: enteredText
+        });
 
         // 전송 끝나면 입력창 비우기
         setEnteredText('');
