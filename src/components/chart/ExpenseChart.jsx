@@ -1,7 +1,9 @@
 import React from 'react';
 import Chart from './Chart';
 
-const ExpenseChart = () => {
+const ExpenseChart = (expenses) => {
+
+    console.log(expenses);
 
     const chartDataPoints = [
         { label: 'Jan', value: 0 },

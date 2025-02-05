@@ -42,7 +42,7 @@ const ExpenseList = ({ expenses }) => {
     return (
         <div className='expenses'>
             <ExpenseFilter onSelectYear={onFilterChange} />
-            <ExpenseChart/>
+            <ExpenseChart expenses={filteredExpenses}/>
             {
                 filteredExpenses.length > 0 ? content : nocontent
             }
