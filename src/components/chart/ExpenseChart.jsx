@@ -1,9 +1,9 @@
 import React from 'react';
 import Chart from './Chart';
 
-const ExpenseChart = (expenses) => {
+const ExpenseChart = ({ expenses }) => {
 
-    console.log(expenses);
+    // console.log(expenses);
 
     const chartDataPoints = [
         { label: 'Jan', value: 0 },
@@ -20,7 +20,13 @@ const ExpenseChart = (expenses) => {
         { label: 'Dec', value: 0 },
     ];
 
-    return <Chart dataPoints={chartDataPoints}/>;
+    // 필터링된 지출 배열을 통해 charDataPoints의 value들을 채우기
+    expenses.forEach(ex => {
+        const expenseMonth = ex.date.getMonth();
+        chartDataPoints[expenseMonth].value += ex.price;
+    });
+
+    return <Chart dataPoints={chartDataPoints} />;
 };
 
 export default ExpenseChart;
