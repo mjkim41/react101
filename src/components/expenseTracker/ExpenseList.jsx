@@ -14,14 +14,17 @@ const ExpenseList = ({ expenses }) => {
         console.log('ExpenseFilter.jsx에서 끌어올려온 filtered year:', selectedYear);
     }
 
+    const createItemArray = () => {
+      // expenses라는 객체배열을 ExpenseItem 컴포넌트로 배열로 변환
+        return expenses.map(ex => <ExpenseItem expense={ex} />);
+    };
+
     return (
         <div className='expenses'>
             {/* Drilling 2.ExpenseFilter에 driling 용 함수 전달해주기 */}
             <ExpenseFilter onSelectYear={ onFilterChange }/>
-            {/*App에서 배열 안에 객체 감싸서 보내줬었음*/}
-            <ExpenseItem expense={expenses[0]} />
-            <ExpenseItem expense={expenses[1]} />
-            <ExpenseItem expense={expenses[2]} />
+
+            {createItemArray()}
         </div>
     );
 };

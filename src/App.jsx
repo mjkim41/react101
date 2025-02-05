@@ -51,6 +51,11 @@ const App = () => {
             title: '크로스핏',
             price: 300000,
             date: new Date(2025, 1 - 1, 15),
+        },
+        {
+            title: '오후 조퇴 무적권',
+            price: 1000,
+            date: new Date(2025, 2 - 1, 5),
         }
     ];
 

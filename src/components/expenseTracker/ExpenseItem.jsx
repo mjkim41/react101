@@ -42,9 +42,7 @@ const ExpenseItem = ({ expense }) => {
                 {/* 통화 표시를 compeont화 함 */}
                 <div className='expense-item__price'>{formatPrice}</div>
             </div>
-
-             {/*    이벤트 바인딩 실습  : 바닐라에서는 onclick=handleClick(), react에서는 onClick=handleClick */}
-            <button id='btn1' onClick={handleClick}>수정</button>
+            
         </Card>
     );
 };
