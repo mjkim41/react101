@@ -1,13 +1,12 @@
 import React from 'react';
-import './CourseList.css';
 import CourseItem from './CourseItem';
+import './CourseList.css'
 
-// onDelete : courseitem한테 지울 li 태그 전달해달라고 함수로 넘기는 바구니 함수
-const CourseList = ({items, onDelete}) => {
+const CourseList = ({ items, onDelete }) => {
     return (
         <ul className='goal-list'>
             {
-                items.map(item => <CourseItem key={items.id} onDelete={onDelete} item={item} />)
+                items.map(item => <CourseItem key={item.id} item={item} onDelete={onDelete} />)
             }
         </ul>
     );
