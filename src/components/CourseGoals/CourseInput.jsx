@@ -5,13 +5,18 @@ import Button from "../ui/Button.jsx";
 // onAdd : App에 goal 전달용 임의 함수
 const CourseInput = ({onAdd}) => {
 
-
-
     const [enteredText, setEnteredText] = useState('');
+    const [isValid, setIsValid] = useState('true');
 
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(enteredText);
+
+        // 입력값 검증
+        if (!enteredText.trim().length > 0) {
+            setIsValid(false);
+            return;
+        }
+
         // 부모에 goal 보내주기
         onAdd({
             id: Math.random().toString(),
@@ -23,8 +28,15 @@ const CourseInput = ({onAdd}) => {
         document.querySelector('input').focus();
     };
 
-    const handleGoalInput = e => {
+    const handleGoalInput = (e) => {
+
         const inputValue = e.target.value;
+
+        // 입력값 검증
+        if (inputValue.trim().length > 0 ) {
+            setIsValid(true);
+        }
+
         setEnteredText(inputValue);
 
     }
@@ -33,7 +45,15 @@ const CourseInput = ({onAdd}) => {
         <form onSubmit={ handleSubmit }>
             <div className='form-control'>
                 <label>나의 목표</label>
-                <input type='text' onInput={ handleGoalInput } value={ enteredText }/>
+                <input
+                    type='text'
+                    onInput={ handleGoalInput }
+                    value={ enteredText }
+                    style={{
+                        background: isValid? 'transparent' : 'salmon',
+                        borderColor: isValid? 'black' : 'red'
+                    }}
+                />
             </div>
             <Button type='submit'>목표 추가하기</Button>
         </form>
