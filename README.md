@@ -36,3 +36,8 @@ createRoot(document.getElementById('root')).render(
 - jsx : javascript + xml
 
 2. main.jsx에서 index.css, App.jsx(실제 html 태그 적여 있는 곳)을 불러온다.
+
+
+# 추가 라이브러리 설치
+1. styled-components: 동적 CSS를 처리해주는 라이브러리
+- `$ npm install styled-components`
