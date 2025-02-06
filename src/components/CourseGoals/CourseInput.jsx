@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
-import './CourseInput.css';
+import styles from './CourseInput.module.css';
 import Button from "../ui/Button.jsx";
 
 // onAdd : App에 goal 전달용 임의 함수
 const CourseInput = ({onAdd}) => {
 
+    console.log(styles);
+
+    // css 모듈
+    const { 'form-control':formControl, invalid } = styles;
     const [enteredText, setEnteredText] = useState('');
     const [isValid, setIsValid] = useState('true');
 
@@ -43,7 +47,7 @@ const CourseInput = ({onAdd}) => {
 
     return (
         <form onSubmit={ handleSubmit }>
-            <div className={`form-control ${!isValid? 'invalid' : ''}`} >
+            <div className={ `${formControl} ${!isValid? invalid : ''}`} >
                 <label>나의 목표</label>
                 <input
                     type='text'
