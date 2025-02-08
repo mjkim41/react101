@@ -2,7 +2,7 @@ import React from 'react';
 import Card from '../Card';
 import Button from '../Button';
 import styles from './ErrorModal.module.css';
-import Portal from "../portal/portal.jsx";
+import Portal from "../portal/Portal.jsx";
 
 // 백드롭 컴포넌트
 const Backdrop = ({onClose}) => {
