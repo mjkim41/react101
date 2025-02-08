@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './AddUsers.module.css';
 import Card from '../ui/Card';
 import Button from '../ui/Button';
-import ErrorModal from "../ui/modal/errorModal.jsx";
+import ErrorModal from "../ui/modal/ErrorModal.jsx";
 const AddUsers = ({onAddUser}) => {
 
     const [userValue, setUserValue] = useState({
