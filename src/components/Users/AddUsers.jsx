@@ -58,9 +58,16 @@ const AddUsers = ({onAddUser}) => {
         });
     }
 
+    // 모달을 닫아주는 함수
+    const closeModal = () => {
+        // modal을 열어주는 원리가 submit 이벤트가 일어나면 error 객체의 값이 null인지 아닌지에 따라 열어주므로,
+        // 닫을 때는 Error을 null로 바꿔주어야 함
+        setError(null);
+    }
+
     return (
         <>
-            {error && <ErrorModal title={error.title} message={error.message}/>}
+            {error && <ErrorModal onClose={closeModal} title={error.title} message={error.message}/>}
             <Card className={styles.input}>
                 <form onSubmit={handleSubmit}>
                     <label htmlFor='username'>이름</label>
