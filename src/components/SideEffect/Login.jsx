@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Card from '../ui/Card';
 import styles from './Login.module.css';
 import Button from '../ui/Button';
@@ -19,25 +19,25 @@ const Login = ({onLogin}) => {
     const handleEmail = e => {
         setEnteredEmail(e.target.value);
 
-        setFormIsValid(
-            e.target.value.includes('@') && enteredPassword.trim().length>6
-        );
+        // setFormIsValid(
+        //     e.target.value.includes('@') && enteredPassword.trim().length>6
+        // );
     };
 
     // 패스워드 값 저장 및 검증
     const handlePassword = e => {
         setEnteredPassword(e.target.value);
 
-        setFormIsValid(enteredEmail.includes('@') && e.target.value.trim().length > 6);
+        // setFormIsValid(enteredEmail.includes('@') && e.target.value.trim().length > 6);
     };
 
     // 이메일 검증
-    const validateEmail = e => {
+    const validateEmail = () => {
         setEmailIsValid(enteredEmail.includes('@'));
     }
 
     // 패스워드 검증
-    const validatePassword = e => {
+    const validatePassword = () => {
         setPasswordIsValid(enteredPassword.trim().length > 6 );
     }
 
@@ -45,6 +45,17 @@ const Login = ({onLogin}) => {
         e.preventDefault();
         onLogin(enteredEmail, enteredPassword);
     }
+
+    // 버튼 활성화 상태를 처리(side effect)를 위한 useEffect
+    useEffect(() => {
+
+        console.log('useEffect call in Login.js');
+
+        setFormIsValid(
+            enteredEmail.includes('@') && enteredPassword.trim().length>6
+        );
+
+    }, [enteredEmail, enteredPassword]);
 
 
     return (
