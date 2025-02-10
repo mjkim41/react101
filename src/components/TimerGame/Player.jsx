@@ -1,12 +1,26 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 
 const Player = () => {
+
+    // input 태그 저장할 ref
+    const nameRef = useRef();
+
+    const [enteredName, setEnteredName] = useState('anonymous');
+
+    const handleChangeName = (e) => {
+
+        const $input = nameRef.current;
+        setEnteredName($input.value);
+
+        $input.value='';
+    };
+
     return (
         <section id="player">
-            <h2>Welcome anonymous!</h2>
+            <h2>Welcome { enteredName }</h2>
             <p>
-                <input type="text"/>
-                <button>Set Name</button>
+                <input type="text" ref={nameRef}/>
+                <button onClick={handleChangeName}>Set Name</button>
             </p>
         </section>
     );
