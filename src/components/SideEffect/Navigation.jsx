@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Navigation.module.css';
-const Navigation = () => {
+const Navigation = ({onLogout}) => {
     return (
         <nav className={styles.nav}>
             <ul>
@@ -11,7 +11,7 @@ const Navigation = () => {
                     <a href='/'>Admin</a>
                 </li>
                 <li>
-                    <a href='/'>Logout</a>
+                    <button onClick={onLogout}>Logout</button>
                 </li>
             </ul>
         </nav>
