@@ -1,26 +1,29 @@
-import React, {useEffect, useRef} from 'react';
+import React, { forwardRef } from 'react'
 
-const ResultModal = ({targetTime}) => {
+const ResultModalComponent = ({ result, targetTime },  ref) => {
 
-    const dialogRef = useRef();
+    // const dialogRef = useRef();
 
-    useEffect(() => {
-        dialogRef.current.showModal();
-    });
+    // useEffect(() => {
+    //   dialogRef.current.showModal();
+    // }, []);
 
     return (
-        // dialog 태그
-        // - css : ::backdrop, [open] 등
-        // - showModal(), show(), close()
-        <dialog ref={dialogRef} className="result-modal">
-            {/*<h2>Your {result}!</h2>*/}
-            <p>The target time was <strong>{targetTime} seconds.</strong></p>
-            <p>You stopped the timer with <strong>X seconds left.</strong></p>
-            <form method="dialog">
+        <dialog ref={ref} className='result-modal'>
+            <h2>Your {result}!</h2>
+            <p>
+                The target time was <strong>{targetTime} seconds.</strong>
+            </p>
+            <p>
+                You stopped the timer with <strong>X seconds left.</strong>
+            </p>
+            <form method='dialog'>
                 <button>Close</button>
             </form>
         </dialog>
     );
-};
+}
+
+const ResultModal = forwardRef(ResultModalComponent);
 
 export default ResultModal;
